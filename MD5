@@ -1,4 +1,4 @@
-ccef2ce37acd78743f42bb9b5230515a *DESCRIPTION
+fa16f78e597d76c2ab9b13750fe41f41 *DESCRIPTION
 afd4221c718c12860d8e0539d3a7798e *NAMESPACE
 21e357c740f120bf817f5558c5aac6d5 *R/bayes.regress.R
 0b556ed82fea6f88afb4605a580e797e *R/bayesregressB1S1.R
@@ -13,7 +13,7 @@ e604d00c14bfe5c93daff1ccc65b9a2d *data/datalist
 212ecac40b41687cb9a90ee6c7148d23 *data/regressiondata.nz.all.csv.gz
 1a1933817e30ec2883f2e282da4b3656 *data/regressiondata.nz.pt1.csv.gz
 673947d3c76be03e1b9cb1d0fa52872b *data/regressiondata.nz.pt2.csv.gz
-b0007e6543034bb12e85602790566b67 *man/bayes.regress.Rd
+c55483da7c2dda1e8be88efdef475535 *man/bayes.regress.Rd
 e92f82b796730cd9e4a7aad219cae4cb *man/read.regress.data.ff.Rd
 0a8ba2a24432bbbee4c232b8ba6e231d *man/regressiondata.nz.all.Rd
 f7ed2c728bb1e998bc38cca3ff1651d9 *man/regressiondata.nz.pt1.Rd

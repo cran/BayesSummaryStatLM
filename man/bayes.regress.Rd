@@ -23,11 +23,11 @@ bayes.regress(data.values=NULL,
   \item{beta.prior}{a list that specifies the characteristics of the prior distribution for \eqn{\beta}, the vector of coefficients of the Bayesian linear regression model. There are three possible types: 
 \itemize{\item \code{flat}: Uniform distribution.
 \item\code{mvnorm.known}: Multivariate Normal with known mean vector \eqn{\mu} and known covariance matrix \eqn{C}.
-\item\code{mvnorm.unknown}: Multivariate Normal with unknown mean vector \eqn{\mu} and unknown covariance matrix \eqn{C}. This prior also includes the hyperpriors for \eqn{\mu} and \eqn{C}, where \eqn{\mu ~ } Multivariate Normal(\eqn{\eta, D)}, and \eqn{C^(-1) ~ } Wishart(d.f. = \eqn{\lambda}, scale matrix = \eqn{V}); \eqn{\eta, D, \lambda, V} assumed known.}
+\item\code{mvnorm.unknown}: Multivariate Normal with unknown mean vector \eqn{\mu} and unknown covariance matrix \eqn{C}. This prior also includes the hyperpriors for \eqn{\mu} and \eqn{C}, where \eqn{\mu ~ } Multivariate Normal(\eqn{\eta, D)}, and \eqn{C^{-1} \sim}{C^(-1) ~} Wishart(d.f. = \eqn{\lambda}, scale matrix = \eqn{V}); \eqn{\eta, D, \lambda, V} assumed known.}
   In each of these three prior types, the list has a different structure, as follows:
   \itemize{
   \item {\code{beta.prior=list(type = "flat")}: a Uniform prior distribution for \eqn{\beta}; no other specification is necessary. This prior distribution is used by default.}
-  \item {\code{beta.prior=list(type = "mvnorm.known", mean.mu = ..., cov.C = ..., prec.Cinv = ... )} 
+  \item {\ifelse{latex}{\out{\code{beta.prior=list(type = "mvnorm.known", mean.mu = ..., \\\\ cov.C = ..., prec.Cinv = ... )}}}{\code{beta.prior=list(type = "mvnorm.known", mean.mu = ..., cov.C = ..., prec.Cinv = ... )}} 
     \itemize{
     \item \code{mean.mu}: the fixed known prior mean vector \eqn{\mu} for the Multivariate Normal prior of \eqn{\beta}. The default is a vector of 0's with length equal to the length of \eqn{\beta}.
     \item \code{cov.C}: the fixed known prior covariance matrix \eqn{C} for the Multivariate Normal prior of \eqn{\beta}. The default is an identity matrix with dimension equal to the length of \eqn{\beta}.
@@ -35,16 +35,16 @@ bayes.regress(data.values=NULL,
     }
     It is advised to supply \code{prec.Cinv} matrix and omit \code{cov.C} for speeding up the algorithm. In case both are supplied, the algorithm gives preference to \code{prec.Cinv}.
   }
-  \item {\code{beta.prior=list(type = "mvnorm.unknown", mu.hyper.mean.eta = ..., mu.hyper.prec.Dinv = ..., Cinv.hyper.df.lambda = ..., Cinv.hyper.invscale.Vinv = ..., mu.init = ..., Cinv.init = ...)}
+  \item {\ifelse{latex}{\out{\code{beta.prior=list(type = "mvnorm.unknown", mu.hyper.mean.eta = ..., \\\\mu.hyper.prec.Dinv = ..., Cinv.hyper.df.lambda = ..., \\\\Cinv.hyper.invscale.Vinv = ..., mu.init = ..., Cinv.init = ...)}}}{\code{beta.prior=list(type = "mvnorm.unknown", mu.hyper.mean.eta = ..., mu.hyper.prec.Dinv = ..., Cinv.hyper.df.lambda = ..., Cinv.hyper.invscale.Vinv = ..., mu.init = ..., Cinv.init = ...)}}
     \itemize{
     \item \code{mu.hyper.mean.eta}: the fixed known hyperparameter mean vector \eqn{\eta} for the Multivariate Normal hyperprior mean \eqn{\mu}. The default is a vector of 0's with length equal to the length of \eqn{\beta}.
-    \item \code{mu.hyper.prec.Dinv}: the fixed known hyperparameter precision matrix \eqn{D}^(-1) for the Multivariate Normal hyperprior mean \eqn{\mu}. The default is an identity matrix with dimension equal to the length of \eqn{\beta}.
-    \item \code{Cinv.hyper.df.lambda}: the fixed known degrees of freedom \eqn{\lambda} for the Wishart hyperprior for \eqn{C}^(-1). The default value is the length of \eqn{\beta} .
+    \item \code{mu.hyper.prec.Dinv}: the fixed known hyperparameter precision matrix \eqn{D^{-1}}{D^(-1)} for the Multivariate Normal hyperprior mean \eqn{\mu}. The default is an identity matrix with dimension equal to the length of \eqn{\beta}.
+    \item \code{Cinv.hyper.df.lambda}: the fixed known degrees of freedom \eqn{\lambda} for the Wishart hyperprior for \eqn{C^{-1}}{C^(-1)}. The default value is the length of \eqn{\beta} .
     \item \code{Cinv.hyper.invscale.Vinv}: 
-the fixed known hyperparameter inverse scale matrix \eqn{V}^(-1) for the Wishart hyperprior for \eqn{C}^(-1). The default is an identity matrix with dimension equal to the length of \eqn{\beta}.
+the fixed known hyperparameter inverse scale matrix \eqn{V^{-1}}{V^(-1)} for the Wishart hyperprior for \eqn{C^{-1}}{C^(-1)}. The default is an identity matrix with dimension equal to the length of \eqn{\beta}.
     \item \code{mu.init}: initial value for \eqn{\mu} for the MCMC chain. 
 The default is a vector of 1's with length equal to the length of \eqn{\beta}. 
-    \item \code{Cinv.init}: initial value for \eqn{C}^(-1) for the MCMC chain. The default is an identity matrix with dimension equal to the length of \eqn{\beta}.
+    \item \code{Cinv.init}: initial value for \eqn{C^{-1}}{C^(-1)} for the MCMC chain. The default is an identity matrix with dimension equal to the length of \eqn{\beta}.
     }
   }
   
@@ -58,7 +58,7 @@ The default is a vector of 1's with length equal to the length of \eqn{\beta}.
   Similar to \code{beta.prior} above, the structure of the list depends on the type of prior distribution chosen. The list must be supplied in either of the following structures:
   \itemize{
 
-    \item \code{sigmasq.prior=list(type = "inverse.gamma", inverse.gamma.a = ..., inverse.gamma.b = ..., sigmasq.init = ...)}.
+    \item \ifelse{latex}{\out{\code{sigmasq.prior=list(type = "inverse.gamma", inverse.gamma.a = ..., \\\\inverse.gamma.b = ..., sigmasq.init = ...)}}}{\code{sigmasq.prior=list(type = "inverse.gamma", inverse.gamma.a = ..., inverse.gamma.b = ..., sigmasq.init = ...)}}
     \itemize{
     \item \code{inverse.gamma.a}: the shape parameter \eqn{a} for the Inverse Gamma prior distribution, assumed known; default = 1.
     \item \code{inverse.gamma.b}: the scale parameter \eqn{b} for the Inverse Gamma prior distribution, assumed known; default = 1.
@@ -76,7 +76,7 @@ The default is a vector of 1's with length equal to the length of \eqn{\beta}.
 
 \details{This function uses the following Bayesian linear regression model: 
 \deqn{y_i=x_i' \beta + \epsilon_i,}
-where \eqn{i = 1,...,numsamp.data}; \eqn{\epsilon_i ~ N(0,\sigma^2)}; \eqn{k} is the number of predictor variables.
+where \eqn{i = 1,...,\mathbf{numsamp.data}}{i = 1,...,numsamp.data}; \eqn{\epsilon_i \sim N(0,\sigma^2)}{\epsilon_i ~ N(0,\sigma^2)}; \eqn{k} is the number of predictor variables.
 The function uses user-supplied prior distributions for \eqn{\beta} and \eqn{\sigma^2}.
 
 The Gibbs sampler is used to sample from all full conditional posterior distributions, which only depend on the summary statistics \eqn{X'X}, \eqn{X'Y} and \eqn{Y'Y} (and \eqn{Y'X = (X'Y)'}); these summary statistics are calculated by the function \code{read.regress.data.ff()} (in this package), or can be provided by the user. Starting values are not needed for the vector \eqn{\beta}, since this vector is updated first, conditioned on all other unknown model parameters and the data.
@@ -87,13 +87,19 @@ The Gibbs sampler is used to sample from all full conditional posterior distribu
 for each prior specification of \eqn{\beta}; these depend on the data only through summary statistics \eqn{X'X} and \eqn{X'Y}:}
 \itemize{
   \item{\code{beta.prior=list(type = "flat")}: 
-\deqn{\beta | \sigma^2, X, Y ~ Normal_{k+1} (mean=((X'X)^(-1)(X'Y), covariance=(\sigma^2(X'X)^(-1))))}}
+\deqn{\beta | \sigma^2, X, Y \sim Normal_{k+1} (mean=((X'X)^{-1}(X'Y), covariance=(\sigma^2(X'X)^{-1})))}{\beta | \sigma^2, X, Y ~ Normal_{k+1} (mean=((X'X)^(-1)(X'Y), covariance=(\sigma^2(X'X)^(-1))))}}
   \item{\code{beta.prior=list(type = "mvnorm.known")}:
-\deqn{\beta | \sigma^2, X, Y ~ Normal_{k+1} (mean=(C^(-1)+\sigma^(-2)(X'X))^(-1)(C^(-1)\mu + \sigma^(-2)X'Y),covariance=(C^(-1)+\sigma^(-2)(X'X)^(-1)))}}
+\ifelse{latex}{\deqn{\begin{array}{r@{\,}l}\beta | \sigma^2, X, Y \sim& Normal_{k+1} (mean=(C^{-1}+\sigma^{-2}(X'X))^{-1}(C^{-1}\mu + \sigma^{-2}X'Y),\\ &covariance=(C^{-1}+\sigma^{-2}(X'X)^{-1}))\end{array}}}{\deqn{\beta | \sigma^2, X, Y \sim Normal_{k+1} (mean=(C^{-1}+\sigma^{-2}(X'X))^{-1}(C^{-1}\mu + \sigma^{-2}X'Y),covariance=(C^{-1}+\sigma^{-2}(X'X)^{-1}))}{\beta | \sigma^2, X, Y ~ Normal_{k+1} (mean=(C^(-1)+\sigma^(-2)(X'X))^(-1)(C^(-1)\mu + \sigma^(-2)X'Y),covariance=(C^(-1)+\sigma^(-2)(X'X)^(-1)))}}}
   \item{\code{beta.prior=list(type = "mvnorm.unknown")}:
-\deqn{\beta | \sigma^2, \mu, C^(-1), X, Y ~ Normal_{k+1} (mean=(C^(-1)+\sigma^(-2)(X'X))^(-1)(C^(-1)\mu + \sigma^(-2)X'Y),covariance=(C^(-1)+\sigma^(-2)(X'X)^(-1)))}
-\deqn{\mu | \beta, \sigma^2, C^(-1), X, Y ~ Normal_{k+1} (mean=(D^(-1)+C^(-1))^(-1)(C^(-1)\beta+D^(-1)\eta), covariance=(D^(-1)+C^(-1))^(-1))}
-\deqn{C^(-1) | \beta, \sigma^2, \mu, X, Y ~ Wishart_{k+1} (d.f. = (1+\lambda), scale matrix = (V^(-1)+ (\beta - \mu)(\beta - \mu)')^(-1))}
+  \ifelse{latex}{
+  \deqn{\begin{array}{r@{\,}l}
+  \beta | \sigma^2, \mu, C^{-1}, X, Y \sim& Normal_{k+1} (mean=(C^{-1}+\sigma^{-2}(X'X))^{-1}(C^{-1}\mu + \sigma^{-2}X'Y),\\\\ &covariance=(C^{-1}+\sigma^{-2}(X'X)^{-1}))\\\\
+  \mu | \beta, \sigma^2, C^{-1}, X, Y \sim& Normal_{k+1} (mean=(D^{-1}+C^{-1})^{-1}(C^{-1}\beta+D^{-1}\eta), \\\\ &covariance=(D^{-1}+C^{-1})^{-1})\\\\
+  C^{-1} | \beta, \sigma^2, \mu, X, Y \sim& Wishart_{k+1} (d.f. = (1+\lambda), scale matrix = (V^{-1}+ (\beta - \mu)(\beta - \mu)')^{-1})
+  \end{array}
+  }}{\deqn{\beta | \sigma^2, \mu, C^{-1}, X, Y ~ Normal_{k+1} (mean=(C^{-1}+\sigma^{-2}(X'X))^{-1}(C^{-1}\mu + \sigma^{-2}X'Y),covariance=(C^{-1}+\sigma^{-2}(X'X)^{-1}))}{\beta | \sigma^2, \mu, C^(-1), X, Y ~ Normal_{k+1} (mean=(C^(-1)+\sigma^(-2)(X'X))^(-1)(C^(-1)\mu + \sigma^(-2)X'Y),covariance=(C^(-1)+\sigma^(-2)(X'X)^(-1)))}
+\deqn{\mu | \beta, \sigma^2, C^{-1}, X, Y ~ Normal_{k+1} (mean=(D^{-1}+C^{-1})^{-1}(C^{-1}\beta+D^{-1}\eta), covariance=(D^{-1}+C^{-1})^{-1})}{\mu | \beta, \sigma^2, C^(-1), X, Y ~ Normal_{k+1} (mean=(D^(-1)+C^(-1))^(-1)(C^(-1)\beta+D^(-1)\eta), covariance=(D^(-1)+C^(-1))^(-1))}
+\deqn{C^{-1} | \beta, \sigma^2, \mu, X, Y ~ Wishart_{k+1} (d.f. = (1+\lambda), scale matrix = (V^{-1}+ (\beta - \mu)(\beta - \mu)')^{-1})}{C^(-1) | \beta, \sigma^2, \mu, X, Y ~ Wishart_{k+1} (d.f. = (1+\lambda), scale matrix = (V^(-1)+ (\beta - \mu)(\beta - \mu)')^(-1))}}
 }
 }
 }
@@ -103,9 +109,9 @@ for each prior specification of \eqn{\beta}; these depend on the data only throu
 for each prior specification of \eqn{\sigma^2}; these depend on the data only through summary statistics \eqn{X'X}, \eqn{X'Y} and \eqn{Y'Y}:}
 \itemize{
   \item{\code{sigmasq.prior=list(type = "inverse.gamma")}:
-\deqn{\sigma^2 | \beta, X, Y ~ Inverse Gamma (numsamp.data/2+a, (0.5(Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta)+1/b)^(-1))}}
+\deqn{\sigma^2 | \beta, X, Y \sim \mathrm{Inv{-}Gamma} \left(\frac{\mathrm{numsamp.data}}{2}+a, \left(\frac{1}{2}(Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta)+1/b\right)^{-1}\right)}{\sigma^2 | \beta, X, Y ~ Inverse Gamma (numsamp.data/2+a, (0.5(Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta)+\frac{1}{b})^(-1))}}
   \item{\code{sigmasq.prior=list(type = "sigmasq.inverse")}: 
-\deqn{\sigma^2 | \beta, X, Y ~ Inverse Gamma (numsamp.data/2, (0.5(Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta))^(-1))}}
+\deqn{\sigma^2 | \beta, X, Y \sim \mathrm{Inv{-}Gamma} \left(\frac{\mathrm{numsamp.data}}{2}, \left(\frac{1}{2}(Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta)\right)^{-1}\right)}{\sigma^2 | \beta, X, Y ~ Inverse Gamma (numsamp.data/2, (0.5(Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta))^(-1))}}
 }
 }
 }

@@ -99,7 +99,7 @@ read.regress.data.ff <- function(filename=NULL,predictor.cols=NA,response.col=NA
         sum.x = rep(0.0,numcols);
         sum.y = 0.0;
         # go through the chunks of the data file
-        for (chnk in chunk.ffdf(data.ffdf))
+        for (chnk in chunk(data.ffdf))
         {
           data.temp = data.ffdf[chnk,]
           x <- data.matrix(data.temp[predictor.cols])

@@ -1,4 +1,7 @@
 import(mvnfast)
 import(ff)
+import(bit)
 export(read.regress.data.ff)
 export(bayes.regress)
+importFrom("stats", "rWishart", "rgamma", "var")
+

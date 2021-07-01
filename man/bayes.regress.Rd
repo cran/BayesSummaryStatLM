@@ -128,9 +128,9 @@ Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A. and Rubin, D.B.
 
 Plummer, M., Best, N., Cowles, K. and Vines, K. (2006) CODA: Convergence diagnosis and output analysis for MCMC. \emph{R News}, \bold{6}(1), 7-11. 
 
-Adler, D., Glaser, C., Nenadic, O., Oehlschlagel, J. and Zucchini, W. (2013) ff: memory-efficient storage of large data on disk and fast access functions. R package: \url{http://CRAN.R-project.org/package=ff}. 
+Adler, D., Glaser, C., Nenadic, O., Oehlschlagel, J. and Zucchini, W. (2013) ff: memory-efficient storage of large data on disk and fast access functions. R package: \url{https://CRAN.R-project.org/package=ff}. 
 
-Fasiolo, M. (2014) An introduction to mvnfast. R package: \url{http://CRAN.R-project.org/package=mvnfast}. 
+Fasiolo, M. (2014) An introduction to mvnfast. R package: \url{https://CRAN.R-project.org/package=mvnfast}. 
 
 }
 
@@ -191,7 +191,7 @@ sigmasq.prior <- list(type = "inverse.gamma", inverse.gamma.a = 1.0,
 
 set.seed(284698)
 
-# Run the "bayes.regress" function using the data simulated above.
+# Run the "bayes.regress()" function using the data simulated above.
 
 MCMC.out <- bayes.regress(data.values, 
                           beta.prior, 

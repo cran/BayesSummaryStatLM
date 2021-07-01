@@ -73,16 +73,16 @@ Carlin, B.P. and Louis, T.A. (2009) \emph{Bayesian Methods for Data Analysis, 3r
 
 Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A. and Rubin, D.B. (2013) \emph{Bayesian Data Analysis, 3rd ed.}, Boca Raton, FL: Chapman and Hall/CRC Press.
 
-Adler, D., Glaser, C., Nenadic, O., Oehlschlagel, J. and Zucchini, W. (2013) ff: memory-efficient storage of large data on disk and fast access functions. R package: \url{http://CRAN.R-project.org/package=ff}. 
+Adler, D., Glaser, C., Nenadic, O., Oehlschlagel, J. and Zucchini, W. (2013) ff: memory-efficient storage of large data on disk and fast access functions. R package: \url{https://CRAN.R-project.org/package=ff}. 
 
 }
 
 \examples{
 # The package includes several example data files, illustrated here.
 
-###########
-# Example 1
-###########
+#########
+# Example
+#########
 # The following command finds the location of the data file
 # that includes 4 predictor variables and 20,000 simulated data values.
 
@@ -104,79 +104,6 @@ filename <- system.file('data/regressiondata.nz.all.csv.gz', package='BayesSumma
 data.values <- read.regress.data.ff(filename)
 data.values
 
-###########
-# Example 2
-###########
-## Several files can be given in a list to be read sequentially, as follows.
-
-filenames <- list(
-  system.file('data/regressiondata.nz.pt1.csv.gz', package='BayesSummaryStatLM'),
-  system.file('data/regressiondata.nz.pt2.csv.gz', package='BayesSummaryStatLM')
-)
-data.values <- read.regress.data.ff(filenames)
-data.values
-
-# The above results can be compared to the "data.values" obtained previously.  They 
-# are the same, since the current files are just copies of the same data split
-# between two files.
-
-###########
-# Example 3
-###########
-## The two files can be read progressively through time, and the summary statistics 
-# are then updated with data in each file, as follows.
-
-filenames <- list(
-  system.file('data/regressiondata.nz.pt1.csv.gz', package='BayesSummaryStatLM'),
-  system.file('data/regressiondata.nz.pt2.csv.gz', package='BayesSummaryStatLM')
-)
-data.values <- read.regress.data.ff(filenames[[1]])
-data.values
-data.values2 <- read.regress.data.ff(filenames[[2]], update.summaries = data.values)
-data.values2
-
-###########
-# Example 4
-###########
-## If not all columns are to be used in regression analysis, one can specify
-# which columns to use in the "predictor.cols" and "response.col" options;
-# the order of "predictor.cols" can also be changed.  The following command 
-# reads in predictors from a subset of 3 columns, and changes their order.
-
-filename <- system.file('data/regressiondata.nz.all.csv.gz', package='BayesSummaryStatLM')
-data.values <- read.regress.data.ff(filename, predictor.cols=c(4,2,3), response.col=5)
-data.values
-
-###########
-# Example 5
-###########
-## If the R session must be terminated, the summary statistics can be saved and then 
-# loaded using standard methods in R, as follows:
-
-filenames <- list(
-  system.file('data/regressiondata.nz.pt1.csv.gz', package='BayesSummaryStatLM'),
-  system.file('data/regressiondata.nz.pt2.csv.gz', package='BayesSummaryStatLM')
-)
-data.values <- read.regress.data.ff(filenames[[1]])
-
-tmpfname <- tempfile()
-save(data.values, file = tmpfname)
-rm(data.values)
-
-# Now the R session can be terminated.  Note that the filename "tmpfname"
-# must be recorded so that it can be used for updating in a later R session.
-# Upon starting a new R session, the state of the previously-calculated
-# summary statistics in the file named "tmpfname" can be restored and 
-# then updated, as follows:
-
-load(tmpfname)
-unlink(tmpfname)
-
-# If a new portion of a data set arrives, the summary statistics are updated
-# as follows:
-
-data.values2 <- read.regress.data.ff(filenames[[2]], update.summaries = data.values)
-data.values2
 }
 \keyword{multilinear}
 \keyword{regression}
